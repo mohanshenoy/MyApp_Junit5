@@ -12,6 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -44,6 +45,7 @@ class MathUtilsTest {
 	
 	@Nested
 	@DisplayName(value = "add method")
+	@Tag("Math")
 	class AddTest {
 		@Test
 		@DisplayName(value = "when adding two Positive numbers")
@@ -83,6 +85,7 @@ class MathUtilsTest {
 	@Test
 	@DisplayName(value = "test the COMPUTE CIRCLE AREA method")
 	//@Disabled
+	@Tag("Math")
 	void testComputeCircleArea() {
 		boolean isServerUp = true;
 		assumeTrue(isServerUp);
