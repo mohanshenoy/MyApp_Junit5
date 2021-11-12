@@ -84,7 +84,7 @@ class MathUtilsTest {
 		assumeTrue(isServerUp);
 		double expected = 314.1592653589793;
 		double actual = mathUtils.computeCircleArea(10);
-		assertEquals(expected, actual, "should return right area");
+		assertEquals(expected, actual, () -> "should return right area "+expected +" but returned "+actual);
 	}
 
 }
