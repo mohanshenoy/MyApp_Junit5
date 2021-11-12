@@ -14,33 +14,40 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.TestReporter;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @DisplayName(value = "When running MathUtils")
 class MathUtilsTest {
 
 	MathUtils mathUtils;
-
+	TestInfo testInfo;
+	TestReporter testReporter;
+	
 	@BeforeAll
-	void beforeAll() {
-		System.out.println("beforeAll............. ");
+	void beforeAll(TestInfo testInfo , TestReporter testReporter) {
+		this.testInfo = testInfo;
+		this.testReporter = testReporter;
+		//System.out.println("beforeAll............. ");
 	}
 	
 	@BeforeEach
 	void beforeEach() {
+		testReporter.publishEntry("Running "+testInfo.getDisplayName()+" with tags "+testInfo.getTags());
 		mathUtils = new MathUtils();
 	}
 	
 	@AfterEach
 	void afterEach() {
-		System.out.println("AfterEach............. ");
+		//System.out.println("AfterEach............. ");
 	}
 
 	@AfterAll
 	void afterAll() {
-		System.out.println("afterAll............. ");
+		//System.out.println("afterAll............. ");
 	}
 	
 	@Nested
@@ -87,6 +94,8 @@ class MathUtilsTest {
 	//@Disabled
 	@Tag("Math")
 	void testComputeCircleArea() {
+		//System.out.println("Running "+testInfo.getDisplayName()+" with tags "+testInfo.getTags());
+		//testReporter.publishEntry("Running "+testInfo.getDisplayName()+" with tags "+testInfo.getTags());
 		boolean isServerUp = true;
 		assumeTrue(isServerUp);
 		double expected = 314.1592653589793;
