@@ -2,13 +2,38 @@ package com.infoscilabs;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MathUtilsTest {
 
+	MathUtils mathUtils;
+
+	@BeforeAll
+	static void beforeAll() {
+		System.out.println("beforeAll............. ");
+	}
+	
+	@BeforeEach
+	void beforeEach() {
+		mathUtils = new MathUtils();
+	}
+	
+	@AfterEach
+	void afterEach() {
+		System.out.println("AfterEach............. ");
+	}
+
+	@AfterAll
+	static void afterAll() {
+		System.out.println("afterAll............. ");
+	}
+	
 	@Test
 	void testAdd() {
-		MathUtils mathUtils = new MathUtils();
 		int expected = 10;
 		int actual = mathUtils.add(5,5);
 		assertEquals(expected, actual, "check the calculations !");
@@ -16,13 +41,11 @@ class MathUtilsTest {
 
 	@Test
 	void testDivide() {
-		MathUtils mathUtils = new MathUtils();
-		assertThrows(NullPointerException.class, () -> mathUtils.divide(5,0) ,"divide by zero should throw");
+		assertThrows(ArithmeticException.class, () -> mathUtils.divide(5,0) ,"divide by zero should throw");
 	}
 	
 	@Test
 	void testComputeCircleArea() {
-		MathUtils mathUtils = new MathUtils();
 		double expected = 314.1592653589793;
 		double actual = mathUtils.computeCircleArea(10);
 		assertEquals(expected, actual, "should return right area");
