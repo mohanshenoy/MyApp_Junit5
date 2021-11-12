@@ -13,7 +13,13 @@ class MathUtilsTest {
 		int actual = mathUtils.add(5,5);
 		assertEquals(expected, actual, "check the calculations !");
 	}
-		
+
+	@Test
+	void testDivide() {
+		MathUtils mathUtils = new MathUtils();
+		assertThrows(NullPointerException.class, () -> mathUtils.divide(5,0) ,"divide by zero should throw");
+	}
+	
 	@Test
 	void testComputeCircleArea() {
 		MathUtils mathUtils = new MathUtils();
